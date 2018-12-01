@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+.flex-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+}
+
+.header-inner {
+    background: #645862 url(../img/cover.jpg) no-repeat fixed;
+    padding: 2em 0;
+    height: 13em;
+    width: 100%;
+}
+
+.header-inner .title {
+    float: right;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.header-logo {
+    border-radius: 50%;
+    float: left;
+    width: 270px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header-title {
+    color: #fff;
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.flex-main {
+    flex: 1;
+}
+
+.features-title {
+    margin-right: 2rem;
+}
+
+.flex-section {
+    display: flex;
+    padding: 0.5rem;
+}
+
+.description {
+    padding: 0.5rem;
+}
+
+.description > ul > li {
+    list-style: square;
+}
+
+.experience-thumbnail {
+    width: 72px;
+}
+
+#featured-work {
+    margin-left: 1rem;
+}
+
+#featured-work .content {
+    display: flex;
+    justify-content: space-around;
+    vertical-align: middle;
+}
+
+.snippet {
+    text-align: center;
+}
+
+.snippet-thumbnail {
+    width: 200px;
+}
+
+.flex-footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+@media all and (max-width: 360px) {
+    .flex-section {
+        flex-direction: column;
+    }
+
+    #featured-work .content {
+        flex-direction: column;
+    }
+
+    .header-inner {
+        background: #645862 url(../img/cover.jpg) no-repeat fixed;
+        padding: 2em 0;
+        height: 5em;
+        width: 100%;
+    }
+    
+    .header-logo {
+        border-radius: 50%;
+        width: 130px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .header-title {
+        color: #fff;
+        font-size: 1.4rem;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    .title h2 {
+        color: #fff;
+        font-size: 1rem;
+        text-shadow: 2px 2px 4px #000;
+    }
+}
+
+@media all and (min-width: 361px) and (max-width: 670px) {
+    .flex-section {
+        flex-direction: column;
+    }
+
+    #featured-work .content {
+        flex-direction: column;
+    }
+
+    .header-inner {
+        background: #645862 url(../img/cover.jpg) no-repeat fixed;
+        padding: 2em 0;
+        height: 6em;
+        width: 100%;
+    }
+    
+    .header-logo {
+        border-radius: 50%;
+        width: 150px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .header-title {
+        color: #fff;
+        font-size: 1.8rem;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    .title h2 {
+        color: #fff;
+        text-shadow: 2px 2px 4px #000;
+    }
+}
+
+@media all and (min-width: 671px) and (max-width: 870px) {
+    .flex-section {
+        flex-direction: column;
+    }
+
+    .header-inner {
+        background: #645862 url(../img/cover.jpg) no-repeat fixed;
+        padding: 2em 0;
+        height: 10em;
+        width: 100%;
+    }
+    
+    .header-inner .title {
+        text-align: right;
+        margin-right: 1rem;
+    }
+    
+    .header-logo {
+        border-radius: 50%;
+        width: 220px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .header-title {
+        color: #fff;
+        font-size: 3rem;
+        text-shadow: 2px 2px 4px #000;
+    }
+}
