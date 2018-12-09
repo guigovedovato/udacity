@@ -1,6 +1,6 @@
 # Movie Trailer
 
-Internal Reporting is an app designed for get reporting from database.
+**Internal Reporting** is an app designed for get reporting from database.
 
 ## Requisites
 
