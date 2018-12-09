@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 from db import DB
 from file import File
 
 
+# List of questions and queries
 questions_queries = {
     "Quais são os três artigos mais populares de todos os tempos?":
         "SELECT * FROM authors",
@@ -12,13 +14,12 @@ questions_queries = {
 }
 
 def main():
-    for item in questions_queries:
-        file = File()
-        file.write(item)
-        print(item)
-        db = DB("news")
-        result = db.execute_query(questions_queries[item])
-        file.write(result)
-        print(result)
+
+    # Creating instances of File and DB
+    file = File()
+    db = DB("news")
+
+    for question in questions_queries:
+        file.write(question, db.execute_query(questions_queries[question]))
 
 main()
