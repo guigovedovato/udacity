@@ -37,4 +37,4 @@ class File():
         It returns the formated text
         """
 
-        return question + '\n' + '\r\n'.join(map(str, query_result)) + '\n\n'
+        return question + '\n' + ' * ' + '\r\n * '.join(map(str, query_result)) + '\n\n'

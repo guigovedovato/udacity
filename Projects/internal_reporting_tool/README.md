@@ -10,3 +10,9 @@
 
 * Clone/Download repository
 * Run internal_reporting.py
+
+## Creating Views
+
+```sql
+select * from table
+```

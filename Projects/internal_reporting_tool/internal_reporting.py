@@ -3,23 +3,36 @@ from db import DB
 from file import File
 
 
-# List of questions and queries
-questions_queries = {
-    "Quais são os três artigos mais populares de todos os tempos?":
-        "SELECT * FROM authors",
-    "Quem são os autores de artigos mais populares de todos os tempos?":
-        "SELECT * FROM authors",
-    "Em quais dias mais de 1% das requisições resultaram em erros?":
-        "SELECT * FROM authors"
-}
+# Example:
+# Quais são os três artigos mais populares de todos os tempos?
+#  * "Princess Shellfish Marries Prince Handsome" — 1201 views
+#  * "Baltimore Ravens Defeat Rhode Island Shoggoths" — 915 views
+#  * "Political Scandal Ends In Political Scandal" — 553 views
+# 
+# Quem são os autores de artigos mais populares de todos os tempos?
+#  * Ursula La Multa — 2304 views
+#  * Rudolf von Treppenwitz — 1985 views
+#  * Markoff Chaney — 1723 views
+#  * Contribuidor anônimo — 1023 views
+# 
+# Em quais dias mais de 1% das requisições resultaram em erros?
+#  * July 29, 2016 — 2.5% errors
 
-def main():
+def job_execute_query(execute_query):
 
     # Creating instances of File and DB
     file = File()
     db = DB("news")
 
-    for question in questions_queries:
-        file.write(question, db.execute_query(questions_queries[question]))
+    for question in execute_query:
+        file.write(question, db.execute_query(execute_query[question]))
 
-main()
+# List of questions and queries
+job_execute_query(execute_query = {
+    "Quais são os três artigos mais populares de todos os tempos?":
+        "SELECT * FROM topthreemostpopulararticles",
+    "Quem são os autores de artigos mais populares de todos os tempos?":
+        "SELECT * FROM mostpopularauthors",
+    "Em quais dias mais de 1% das requisições resultaram em erros?":
+        "SELECT * FROM requestswithmorethanonepererror"
+})
