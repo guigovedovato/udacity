@@ -1,18 +1,17 @@
 # Internal Reporting
 
-**Internal Reporting** is an app designed for get reporting from database. 
-This project consists of:
+**Internal Reporting** is an app designed for get reporting from database. This project consists of:
 * Connecting to the *news* database via **vagrant** user
-* Running views to view reports:
+* Running views to view reports and answer these questions:
     * "Quais são os três artigos mais populares de todos os tempos?"
     * "Quem são os autores de artigos mais populares de todos os tempos?"
     * "Em quais dias mais de 1% das requisições resultaram em erros?"
 * To run the program successfully, it is requested:
-    * Please, see [Requirements](#requirements) for requirements of this project
-    * [Instalation](#Instalation)
-    * [Creating Views](#creating-views)
-    * [Execution](#execution)
-    * [Result](#result)
+    * Please, see [Requirements](#requirements) for requirements of this project;
+    * How to install in [Instalation](#Instalation) section;
+    * The views used for questions in [Creating Views](#creating-views) section;
+    * How to execute the app in [Execution](#execution) section;
+    * The result of queries in [Result](#result) section;
 
 ## Requirements
 
