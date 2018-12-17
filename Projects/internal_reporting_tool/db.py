@@ -5,7 +5,7 @@ import psycopg2
 class DB():
     """ This DB class provides an interface between database and classes. """
 
-    # BD, user and password
+    # BD and user
     USER = "vagrant"
     BASE = 'news'
 

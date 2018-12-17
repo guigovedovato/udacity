@@ -6,7 +6,7 @@ class File():
     """ This File class provides a mechanism to save text files. """
 
     # filename
-    FILENAME = "example.txt"
+    FILENAME = "result.txt"
 
     def write(self, question, query_result):
         """
