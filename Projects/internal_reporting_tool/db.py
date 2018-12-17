@@ -5,12 +5,10 @@ import psycopg2
 class DB():
     """ This DB class provides an interface between database and other classes. """
 
-    # BD user and password
+    # BD, user and password
     USER = "app_user"
     PASS = "4pp_U$3R"
-
-    def __init__(self, db_name):
-        self.db_name = db_name
+    BASE = 'news'
 
     def execute_query(self, query):
         """
@@ -23,7 +21,7 @@ class DB():
         """
 
         try:
-            connection = psycopg2.connect(database = self.db_name, user = self.USER, password = self.PASS)
+            connection = psycopg2.connect(database = self.BASE, user = self.USER, password = self.PASS)
             cursor = connection.cursor()
             cursor.execute(query)
             return cursor.fetchall()

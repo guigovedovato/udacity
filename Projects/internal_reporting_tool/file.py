@@ -6,7 +6,7 @@ class File():
     """ This File class provides a mechanism to save text files. """
 
     # filename
-    FILENAME = "exemple.txt"
+    FILENAME = "example.txt"
 
     def write(self, question, query_result):
         """
@@ -36,5 +36,5 @@ class File():
                 query_result
         It returns the formated text
         """
-
-        return question + '\n' + ' * ' + '\r\n * '.join(map(str, query_result)) + '\n\n'
+        
+        return question + '\n' + ' * ' + '\r\n * '.join(map(str, query_result)).replace("('", "").replace("')", "").replace("', '", " -") + '\n\n'

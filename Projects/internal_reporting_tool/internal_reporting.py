@@ -22,10 +22,15 @@ def job_execute_query(execute_query):
 
     # Creating instances of File and DB
     file = File()
-    db = DB("news")
+    db = DB()
+
+    print("Starting log")
 
     for question in execute_query:
+        print("Running query")
         file.write(question, db.execute_query(execute_query[question]))
+    
+    print("Ending log")
 
 # List of questions and queries
 job_execute_query(execute_query = {
