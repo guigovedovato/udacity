@@ -21,9 +21,11 @@ from file import File
 # List of questions and queries
 execute_query = {
     "Quais são os três artigos mais populares de todos os tempos?":
-        "SELECT * FROM topthreemostpopulararticles",
+        "SELECT title, TO_CHAR(num, '999G999') || ' views'\
+            FROM topthreemostpopulararticles",
     "Quem são os autores de artigos mais populares de todos os tempos?":
-        "SELECT * FROM mostpopularauthors",
+        "SELECT name, TO_CHAR(num, '999G999') || ' views'\
+            FROM mostpopularauthors",
     "Em quais dias mais de 1% das requisições resultaram em erros?":
         "SELECT * FROM requestswithmorethanonepererror"
 }

@@ -6,8 +6,7 @@ class DB():
     """ This DB class provides an interface between database and classes. """
 
     # BD, user and password
-    USER = "app_user"
-    PASS = "4pp_U$3R"
+    USER = "vagrant"
     BASE = 'news'
 
     def execute_query(self, query):
@@ -24,8 +23,7 @@ class DB():
         try:
             connection = psycopg2.connect(
                 database=self.BASE,
-                user=self.USER,
-                password=self.PASS
+                user=self.USER
             )
             cursor = connection.cursor()
             cursor.execute(query)
