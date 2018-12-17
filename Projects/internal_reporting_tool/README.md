@@ -1,6 +1,7 @@
-# Movie Trailer
+# Internal Reporting
 
 **Internal Reporting** is an app designed for get reporting from database.
+
 
 ## Requisites
 
@@ -9,13 +10,17 @@
 ## Instalation
 
 * Clone/Download repository
-* Run internal_reporting.py
+* Download and unpack [newsdata.zip](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+* Import *new* database
+```
+psql -d news -f newsdata.sql
+```
 
-## Creating User
+## Execution
 
-```sql
-CREATE USER app_user WITH ENCRYPTED PASSWORD '4pp_U$3R';
-GRANT ALL PRIVILEGES ON DATABASE news TO app_user;
+* Run 
+```
+python3 internal_reporting.py
 ```
 
 ## Creating Views
@@ -30,9 +35,6 @@ SELECT ar.title, TO_CHAR(COUNT(ar.slug), '999G999') || ' views' AS num
   GROUP BY ar.title
   ORDER BY num DESC
   LIMIT 3;
-
-ALTER TABLE topthreemostpopulararticles
-  OWNER TO app_user;
 ```
 ```sql
 -- Quem são os autores de artigos mais populares de todos os tempos?
@@ -44,9 +46,6 @@ SELECT au.name, TO_CHAR(COUNT(ar.slug), '999G999') || ' views' AS num
   INNER JOIN authors au on ar.author = au.id
   GROUP BY au.name
   ORDER BY num DESC;
-
-ALTER TABLE mostpopularauthors
-  OWNER TO app_user;
 ```
 ```sql
 -- Em quais dias mais de 1% das requisições resultaram em erros?
@@ -59,8 +58,5 @@ SELECT TO_CHAR(dte :: DATE, 'Mon dd, yyyy') AS date, TO_CHAR(percent,'999D99%') 
 FROM log
 GROUP BY time::timestamp::date, status
 ORDER BY percent DESC) AS p
-WHERE p.percent > 1 AND status = '404 NOT FOUND'
-
-ALTER TABLE requestswithmorethanonepererror
-  OWNER TO app_user;
+WHERE p.percent > 1 AND status != '200 OK';
 ```
