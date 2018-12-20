@@ -95,7 +95,7 @@ session.add(menuItem1)
 session.commit()
 
 menuItem2 = MenuItem(
-    name="Peking Duck", description=" A famous duck dish from Beijing[1] that has been prepared since the imperial era. The meat is prized for its thin, crisp skin, with authentic versions of the dish serving mostly the skin and little meat, sliced in front of the diners by the cook", price="$25", course="Entree", restaurant=restaurant2)
+    name="Peking Duck", description="A famous duck dish from Beijing[1] that has been prepared since the imperial era. The meat is prized for its thin, crisp skin, with authentic versions of the dish serving mostly the skin and little meat, sliced in front of the diners by the cook", price="$25", course="Entree", restaurant=restaurant2)
 
 session.add(menuItem2)
 session.commit()
@@ -144,7 +144,7 @@ menuItem2 = MenuItem(name="Chinese Dumplings", description="a common Chinese dum
 session.add(menuItem2)
 session.commit()
 
-menuItem3 = MenuItem(name="Gyoza", description="The most prominent differences between Japanese-style gyoza and Chinese-style jiaozi are the rich garlic flavor, which is less noticeable in the Chinese version, the light seasoning of Japanese gyoza with salt and soy sauce, and the fact that gyoza wrappers are much thinner",
+menuItem3 = MenuItem(name="Gyoza", description="The most prominent differences between Japanese-style gyoza and Chinese-style jiaozi are the rich garlic flavor, which is less noticeable in the Chinese version, the light seasoning of Japanese gyoza with salt and soy sauce",
                      price="$9.95", course="Entree", restaurant=restaurant1)
 
 session.add(menuItem3)
@@ -346,7 +346,7 @@ menuItem1 = MenuItem(name="Super Burrito Al Pastor", description="Marinated Pork
 session.add(menuItem1)
 session.commit()
 
-menuItem2 = MenuItem(name="Cachapa", description="Golden brown, corn-based Venezuelan pancake; usually stuffed with queso telita or queso de mano, and possibly lechon. ",
+menuItem2 = MenuItem(name="Cachapa", description="Golden brown, corn-based Venezuelan pancake; usually stuffed with queso telita or queso de mano, and possibly lechon.",
                      price="$7.99", course="Entree", restaurant=restaurant1)
 
 session.add(menuItem2)
