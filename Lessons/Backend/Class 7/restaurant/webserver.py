@@ -24,17 +24,17 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
             output = ""
             output += "<a href = '/restaurants/new' > \
-                Make a New Restaurant Here </a></br></br>"
+                Make a New Restaurant Here </a><br><br>"
             output += "<html><body>"
             for restaurant in restaurants:
                 output += restaurant.name
-                output += "</br>"
+                output += "<br>"
                 output += "<a href ='/restaurants/%s/edit' >Edit </a> " \
                     % restaurant.id
-                output += "</br>"
+                output += "<br>"
                 output += "<a href ='/restaurants/%s/delete'> Delete </a>" \
                     % restaurant.id
-                output += "</br></br></br>"
+                output += "<br><br><br>"
             output += "</body></html>"
             self.wfile.write(bytes(output, "utf8"))
             return
