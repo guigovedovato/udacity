@@ -8,7 +8,7 @@
 * To run the program successfully, it is requested:
     * Please, see [Requirements](#requirements) for requirements of this project;
     * How to install in [Instalation](#Instalation) section;
-    * Creating database [Creating Database](#creating-database) section;
+    * Setup database [Setup Database](#setup-database) section;
     * How to execute the app in [Execution](#execution) section;
     * See the Application in [Application](#application) section;
 
@@ -18,27 +18,29 @@
 * Download and install [PostgreSQL](https://www.postgresql.org/download/)
 * Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 * Download and install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+* Create your own OAuth 2.0 client IDs [Google Developers](https://console.developers.google.com)
 
 ## Instalation
 
 * Clone/Download [fullstack-nanodegree-vm](https://github.com/udacity/fullstack-nanodegree-vm) repository
 * Clone/Download this repository and *copy and paste* all content of **catalog** to the same in *fullstack-nanodegree-vm*
+* Create the file **client_secrets.json** and insert your own *Google API Credentials*
 
-## Creating Database
+## Setup Database
 
-* Create *catalog_db* database and tables
+* Create *catalog_db* database
 ```sql
 psql -d catalog_db -f create_database.sql
 ```
 
-* Create views
-```sql
-psql -d catalog_db -f create_views.sql
+* Create Tables
+```
+python database_setup.py
 ```
 
 * Load initial data
-```sql
-psql -d catalog_db -f load_data.sql
+```
+python load_data.py
 ```
 
 ## Execution

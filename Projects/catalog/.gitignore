@@ -104,3 +104,6 @@ flaskenv/
 
 # mypy
 .mypy_cache/
+
+# file
+client_secrets.json
