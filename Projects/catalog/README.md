@@ -24,23 +24,31 @@
 
 * Clone/Download [fullstack-nanodegree-vm](https://github.com/udacity/fullstack-nanodegree-vm) repository
 * Clone/Download this repository and *copy and paste* all content of **catalog** to the same in *fullstack-nanodegree-vm*
-* Create the file **client_secrets.json** and insert your own *Google API Credentials*
+* Create the file **client_secrets.json** in config folder and insert your own *Google API Credentials*
+    * add Restrictions to:
+    ```
+    Authorised JavaScript origins
+        http://localhost:8000
+    Authorised redirect URIs
+        http://localhost:8000/login
+        http://localhost:8000/gconect
+    ```
 
 ## Setup Database
 
 * Create *catalog_db* database
 ```sql
-psql -d catalog_db -f create_database.sql
+psql -d catalog_db -f .\db\create_database.sql
 ```
 
 * Create Tables
 ```
-python database_setup.py
+python .\database_setup.py
 ```
 
 * Load initial data
 ```
-python load_data.py
+python .\load_data.py
 ```
 
 ## Execution
