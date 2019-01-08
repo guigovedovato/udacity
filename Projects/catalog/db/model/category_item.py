@@ -30,7 +30,7 @@ class CategoryItem(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            'title': self.name,
+            'title': self.title,
             'description': self.description,
             'id': self.id
         }
