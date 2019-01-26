@@ -31,8 +31,9 @@
         http://localhost:8000
     Authorised redirect URIs
         http://localhost:8000/login
-        http://localhost:8000/gconect
+        http://localhost:8000/gconnect
     ```
+* Configure the **data-clientid** in *login.html*
 
 ## Setup Database
 

@@ -18,9 +18,12 @@ import json
 from flask import make_response
 import requests
 import os
+from flask_wtf.csrf import CsrfProtect
 
 
 app = Flask(__name__)
+app.secret_key = 'super_secret_key'
+csrf = CsrfProtect(app)
 
 
 CLIENT_SECRETS = os.path.join(os.getcwd(), 'app\\config\\client_secrets.json')
@@ -47,6 +50,7 @@ def showLogin():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    print("CLIENT_SECRETS " + CLIENT_SECRETS)
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -124,7 +128,7 @@ def gconnect():
     login_session['user_id'] = user_id
 
     response = make_response(json.dumps("you are now logged in as %s"
-                             % login_session['username']),
+                                        % login_session['username']),
                              200)
     return response
 
@@ -223,14 +227,12 @@ def catalog():
 # Show all categories
 @app.route('/')
 @app.route('/catalog')
+@csrf.exempt
 def showCategories():
     categories = session.query(Category).order_by(
         asc(Category.name))
-    if 'username' not in login_session:
-        return render_template('publiccategories.html', categories=categories)
-    else:
-        return render_template('categories.html', categories=categories,
-                               login_session=login_session)
+    return render_template('catalog.html', categories=categories,
+                           login_session=login_session)
 
 
 # Create a new category
@@ -246,7 +248,7 @@ def newCategory():
         session.commit()
         return redirect(url_for('showCategories'))
     else:
-        return render_template('newCategory.html',
+        return render_template('newcatalog.html',
                                login_session=login_session)
 
 
@@ -267,7 +269,7 @@ def editCategory(category_name):
             flash('Category Successfully Edited %s' % editedCategory.name)
             return redirect(url_for('showCategories'))
     else:
-        return render_template('editCategory.html', category=editedCategory,
+        return render_template('editcatalog.html', category=editedCategory,
                                login_session=login_session)
 
 
@@ -288,27 +290,23 @@ def deleteCategory(category_name):
         session.commit()
         return redirect(url_for('showCategories', category_name=category_name))
     else:
-        return render_template('deleteCategory.html',
+        return render_template('deletecatalog.html',
                                category=categoryToDelete,
                                login_session=login_session)
 
 
 # Show a category
 @app.route('/catalog/<string:category_name>')
+@csrf.exempt
 def showCategory(category_name):
     category = session.query(
         Category).filter_by(name=category_name).one()
     items = session.query(CategoryItem).filter_by(
         category_id=category.id).all()
     creator = getUserInfo(category.user_id)
-    if 'username' not in login_session or creator.id ==\
-       login_session["user_id"]:
-        return render_template('publiccategory.html', items=items,
-                               category=category, creator=creator)
-    else:
-        return render_template('category.html', items=items,
-                               category=category, creator=creator,
-                               login_session=login_session)
+    return render_template('catalogitem.html', items=items,
+                           category=category, creator=creator,
+                           login_session=login_session)
 
 
 # Create a new category item
@@ -333,7 +331,8 @@ def newCategoryItem(category_name):
         flash('New Category %s Item Successfully Created' % (newItem.title))
         return redirect(url_for('showCategory', category_name=category_name))
     else:
-        return render_template('newcategory.html', category_name=category_name,
+        return render_template('newcatalogitem.html',
+                               category_name=category_name,
                                login_session=login_session)
 
 
@@ -363,7 +362,7 @@ def editCategoryItem(category_name, categoryItem_name):
         flash('Category Item Successfully Edited')
         return redirect(url_for('showCategory', category_name=category_name))
     else:
-        return render_template('editcategoryitem.html',
+        return render_template('editcatalogitem.html',
                                category_name=category_name,
                                categoryItem_name=categoryItem_name,
                                item=editedItem, login_session=login_session)
@@ -391,5 +390,5 @@ def deleteCategoryItem(category_name, categoryItem_name):
         flash('Category Item Successfully Deleted')
         return redirect(url_for('showCategory', category_name=category_name))
     else:
-        return render_template('deleteCategoryItem.html', item=itemToDelete,
+        return render_template('deletecatalogitem.html', item=itemToDelete,
                                login_session=login_session)
