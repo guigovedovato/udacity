@@ -18,12 +18,13 @@ import json
 from flask import make_response
 import requests
 import os
-from flask_wtf.csrf import CsrfProtect
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
-csrf = CsrfProtect(app)
+app.debug = True
+csrf = CSRFProtect(app)
 
 
 CLIENT_SECRETS = os.path.join(os.getcwd(), 'app\\config\\client_secrets.json')
@@ -50,7 +51,6 @@ def showLogin():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
-    print("CLIENT_SECRETS " + CLIENT_SECRETS)
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -248,8 +248,7 @@ def newCategory():
         session.commit()
         return redirect(url_for('showCategories'))
     else:
-        return render_template('newcatalog.html',
-                               login_session=login_session)
+        return render_template('newcatalog.html')
 
 
 # Edit a category
@@ -267,10 +266,10 @@ def editCategory(category_name):
         if request.form['name']:
             editedCategory.name = request.form['name']
             flash('Category Successfully Edited %s' % editedCategory.name)
-            return redirect(url_for('showCategories'))
+            return redirect(url_for('showCategory',
+                                    category_name=editedCategory.name))
     else:
-        return render_template('editcatalog.html', category=editedCategory,
-                               login_session=login_session)
+        return render_template('editcatalog.html', category=editedCategory)
 
 
 # Delete a category
@@ -285,14 +284,20 @@ def deleteCategory(category_name):
                to delete this Category. Please create your own Category in\
                order to delete.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
-        session.delete(categoryToDelete)
-        flash('%s Successfully Deleted' % categoryToDelete.name)
-        session.commit()
-        return redirect(url_for('showCategories', category_name=category_name))
+        try:
+            session.delete(categoryToDelete)
+            session.commit()
+            flash('%s Successfully Deleted' % categoryToDelete.name)
+            return redirect(url_for('showCategories'))
+        except Exception:
+            session.rollback()
+            flash('%s was not Deleted' % categoryToDelete.name)
+            return "<script>function myFunction() {alert('\
+                   This Category there are Items, delete those items first');\
+                   }</script><body onload='myFunction()'>"           
     else:
         return render_template('deletecatalog.html',
-                               category=categoryToDelete,
-                               login_session=login_session)
+                               category=categoryToDelete)
 
 
 # Show a category
@@ -332,8 +337,7 @@ def newCategoryItem(category_name):
         return redirect(url_for('showCategory', category_name=category_name))
     else:
         return render_template('newcatalogitem.html',
-                               category_name=category_name,
-                               login_session=login_session)
+                               category_name=category_name)
 
 
 # Edit a category item
@@ -354,7 +358,7 @@ def editCategoryItem(category_name, categoryItem_name):
                onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['title']:
-            editedItem.name = request.form['title']
+            editedItem.title = request.form['title']
         if request.form['description']:
             editedItem.description = request.form['description']
         session.add(editedItem)
@@ -364,8 +368,8 @@ def editCategoryItem(category_name, categoryItem_name):
     else:
         return render_template('editcatalogitem.html',
                                category_name=category_name,
-                               categoryItem_name=categoryItem_name,
-                               item=editedItem, login_session=login_session)
+                               categoryItem_name=editedItem.title,
+                               item=editedItem)
 
 
 # Delete a category item
@@ -391,4 +395,4 @@ def deleteCategoryItem(category_name, categoryItem_name):
         return redirect(url_for('showCategory', category_name=category_name))
     else:
         return render_template('deletecatalogitem.html', item=itemToDelete,
-                               login_session=login_session)
+                               category_name=category_name)
