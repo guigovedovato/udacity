@@ -294,7 +294,7 @@ def deleteCategory(category_name):
             flash('%s was not Deleted' % categoryToDelete.name)
             return "<script>function myFunction() {alert('\
                    This Category there are Items, delete those items first');\
-                   }</script><body onload='myFunction()'>"           
+                   }</script><body onload='myFunction()'>"
     else:
         return render_template('deletecatalog.html',
                                category=categoryToDelete)
