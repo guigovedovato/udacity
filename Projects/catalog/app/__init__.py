@@ -27,7 +27,7 @@ app.debug = True
 csrf = CSRFProtect(app)
 
 
-CLIENT_SECRETS = os.path.join(os.getcwd(), 'app\\config\\client_secrets.json')
+CLIENT_SECRETS = os.path.join(os.getcwd(), 'app/config/client_secrets.json')
 CLIENT_ID = json.loads(
     open(CLIENT_SECRETS, 'r').read())['web']['client_id']
 
@@ -74,8 +74,8 @@ def gconnect():
     access_token = credentials.access_token
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
-    h = httplib2.Http()
-    result = json.loads(h.request(url, 'GET')[1])
+    h = requests.get(url)
+    result = json.loads(h.content)
     # If there was an error in the access token info, abort.
     if result.get('error') is not None:
         response = make_response(json.dumps(result.get('error')), 500)
@@ -203,9 +203,11 @@ def getUserID(email):
 # JSON APIs to view Catalog Information
 @app.route('/api/catalog/<string:category_name>')
 def category(category_name):
-    item = session.query(Category).filter_by(
+    category = session.query(Category).filter_by(
         name=category_name).one()
-    return jsonify(category=item.serialize)
+    items = session.query(
+        CategoryItem).filter_by(category_id=category.id).all()
+    return jsonify(categories=[r.serialize for r in items])
 
 
 @app.route('/api/catalog/<string:category_name>/<string:categoryItem_name>')

@@ -1,0 +1,13 @@
+Description
+#1 - aplicativo que fornece uma lista de itens em uma variedade de categorias, bem como um sistema de registro e autenticação de usuários.
+#2 - Usuários registrados terão a capacidade de postar, editar e excluir seus próprios itens.
+#3 - Você aprenderá a desenvolver uma aplicação web RESTul usando o framework Python Flask junto à implementação de autenticação externa OAuth.
+
+Functionalities
+#1 - a página inicial exibe todas as atuais categorias junto aos itens adicionados recentemente.
+#2 - Selecionar uma categoria específica mostra todos os itens disponíveis para tal categoria.
+#3 - Selecionar um item específico mostra informações específicas sobre esse item.
+#4 - Depois de logar, um usuário tem a capacidade de adicionar, atualizar ou remover informações sobre um item.
+#5 - Os usuários devem poder modificar apenas os itens que eles mesmos criaram.
+#6 - http://localhost:8000
+#7 - http://localhost:8000/catalog/Snowboarding/Snowboard

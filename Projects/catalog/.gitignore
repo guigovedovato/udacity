@@ -107,4 +107,3 @@ flaskenv/
 
 # file
 client_secrets.json
-db_connect.json

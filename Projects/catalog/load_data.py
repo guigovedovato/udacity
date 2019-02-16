@@ -28,7 +28,7 @@ session = DBSession()
 # Create dummy user
 User = User(name="First User", email="fuser@udacity.com",
             picture='https://pbs.twimg.com/profile_images/\
-             2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
 session.add(User)
 session.commit()
 
@@ -41,12 +41,12 @@ session.commit()
 categoryItem1 = CategoryItem(user_id=1,
                              title="BALENCIAGA",
                              description="The Spanish fashion house of\
-                             Balenciaga offers cutting-edge styles that\
-                             balance clean, modern silhouettes with strong\
-                             shapes and innovation with refinement. This\
-                             navy blue cotton shirt features a relaxed fit,\
-                             short sleeves, an all over logo print and a\
-                             padded interior.",
+ Balenciaga offers cutting-edge styles that\
+ balance clean, modern silhouettes with strong\
+ shapes and innovation with refinement. This\
+ navy blue cotton shirt features a relaxed fit,\
+ short sleeves, an all over logo print and a\
+ padded interior.",
                              category_id=category1.id)
 
 session.add(categoryItem1)
@@ -61,21 +61,21 @@ session.commit()
 categoryItem2 = CategoryItem(user_id=1,
                              title="GUCCI",
                              description="Pre-Fall 2018 brings the outerwear\
-                             theme to the forefront while staying true to the\
-                             House roots. Inspired by the hiking world, these\
-                             boots are presented in a dynamic mix of\
-                             materials-rubber, suede, and the Original GG\
-                             monogram canvas from the 1970s. A recurring\
-                             detail of the latest collections, the Gucci\
-                             logo is displayed in the graphic font of\
-                             SEGA—a fixture in the colorful arcades and\
-                             coin-op game rooms of the eighties. Grey\
-                             leather, grey suede and grey technical canvas.\
-                             Men's. Rubber Gucci patch in SEGA font, used\
-                             with permission of Sega Holdings Co., Ltd.\
-                             Perforated padded ankle detail. Rubber lug\
-                             sole. 10mm height. 16cm shaft height. Made\
-                             in Italy.",
+ theme to the forefront while staying true to the\
+ House roots. Inspired by the hiking world, these\
+ boots are presented in a dynamic mix of\
+ materials-rubber, suede, and the Original GG\
+ monogram canvas from the 1970s. A recurring\
+ detail of the latest collections, the Gucci\
+ logo is displayed in the graphic font of\
+ SEGA—a fixture in the colorful arcades and\
+ coin-op game rooms of the eighties. Grey\
+ leather, grey suede and grey technical canvas.\
+ Men's. Rubber Gucci patch in SEGA font, used\
+ with permission of Sega Holdings Co., Ltd.\
+ Perforated padded ankle detail. Rubber lug\
+ sole. 10mm height. 16cm shaft height. Made\
+ in Italy.",
                              category_id=category2.id)
 
 session.add(categoryItem2)
@@ -90,15 +90,15 @@ session.commit()
 categoryItem3 = CategoryItem(user_id=1,
                              title="GIVENCHY",
                              description="Softly structured, Givenchy’s red\
-                             and royal blue logo stripe backpack perfectly\
-                             encapsulates the Givenchy men's aesthetic;\
-                             strong, urban and virile. Detailed with a logo\
-                             to the front, this sleek backpack features a\
-                             round top handle, adjustable shoulder straps,\
-                             logo patch to the rear, an all-around zip\
-                             fastening, a main internal compartment, an\
-                             internal zipped pocket and a front zip\
-                             pocket.",
+ and royal blue logo stripe backpack perfectly\
+ encapsulates the Givenchy men's aesthetic;\
+ strong, urban and virile. Detailed with a logo\
+ to the front, this sleek backpack features a\
+ round top handle, adjustable shoulder straps,\
+ logo patch to the rear, an all-around zip\
+ fastening, a main internal compartment, an\
+ internal zipped pocket and a front zip\
+ pocket.",
                              category_id=category3.id)
 
 session.add(categoryItem3)

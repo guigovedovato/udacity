@@ -19,12 +19,17 @@
 * Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 * Download and install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 * Create your own OAuth 2.0 client IDs [Google Developers](https://console.developers.google.com)
+* Run the command below to install libraries:
+```
+pip install -r requirements.txt
+```
 
 ## Instalation
 
 * Clone/Download [fullstack-nanodegree-vm](https://github.com/udacity/fullstack-nanodegree-vm) repository
 * Clone/Download this repository and *copy and paste* all content of **catalog** to the same in *fullstack-nanodegree-vm*
-* Create the file **client_secrets.json** in config folder and insert your own *Google API Credentials*
+* Create the folder **config** inside *app* folder
+* Create the file **client_secrets.json** in app\config folder and insert your own *Google API Credentials*
     * add Restrictions to:
     ```
     Authorised JavaScript origins
@@ -38,18 +43,19 @@
 ## Setup Database
 
 * Create *catalog_db* database
+* Run the script below which is inside the folder *db*
 ```sql
-psql -d catalog_db -f .\db\create_database.sql
+psql -d catalog_db -f create_database.sql
 ```
 
 * Create Tables
 ```
-python .\database_setup.py
+python database_setup.py
 ```
 
 * Load initial data
 ```
-python .\load_data.py
+python load_data.py
 ```
 
 ## Execution
