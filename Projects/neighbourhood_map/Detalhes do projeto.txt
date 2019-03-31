@@ -1,0 +1,15 @@
+Escreva o código necessário para exibir marcadores de mapa que identifiquem pelo menos cinco locais em que você tem interesse dentro desse bairro. O aplicativo deve exibir esses locais por padrão quando a página é carregada.
+Implemente uma visualização de lista do conjunto de locais definidos na etapa 5.
+Disponibilize uma opção de filtro que use um campo de entrada para filtrar a visualização de lista e os marcadores do mapa exibidos por padrão ao carregar. A visualização de lista e os marcadores devem ser atualizados conforme o filtro, em tempo real. Disponibilizar uma função de busca por meio de uma API de terceiros não é o suficiente, perante as especificações. O filtro pode ser de inserção de texto ou um menu suspenso.
+Usando APIs de terceiros, adicione um recurso que forneça informações ao clicar em um marcador do mapa ou em uma linha da visualizaçao de lista (ex: avaliações no Yelp, Wikipédia, imagens do Flickr etc.). 
+Faça menção às APIs/fontes de dados que usar. Por exemplo, se usar o Foursquare, indique em algum lugar na interface e no seu arquivo README que você usou a API do Foursquare.
+A interface do aplicativo deve ser intuitiva. Por exemplo, a área de inserção de texto para filtrar locais deve ser fácil de achar. Deve ser fácil entender que conjunto de locais está sendo filtrado. Selecionar um local por meio de um item da lista ou um marcador de mapa deve fazer o marcador se mover ou executar alguma animação para indicar que o local foi selecionado, e a janela de informações associadas deve ser aberta acima do marcador de mapa, oferecendo mais informações.
+
+Clicar em um marcador no mapa deve abrir mais informações sobre o local.
+Clicar em um nome na visualização de lista deve exibir as informações do marcador associado.
+A lista de locais deve ser filtrável por inserção de texto ou menu suspenso. Filtrar a lista também filtra os marcadores no mapa.
+O aplicativo web deve ser responsivo em dispositivos móveis — veja o ícone de hambúrguer do menu usado para ocultar a lista em telas pequenas (essa é só uma das implementações possíveis para dispositivos móveis).
+
+O diretório “node_modules” pode conter milhares de arquivos e não deve ser entregue juntamente ao projeto. Se o código de seu projeto estiver no GitHub, pode ser necessário remover o monitoramento desses arquivos (e removê-los de seu repositório) antes da entrega.
+É obrigatório incluir um arquivo README com instruções claras para configurar e executar o código de aplicativo de seu projeto.
+

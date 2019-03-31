@@ -1,0 +1,14 @@
+Visão geral do projeto
+Você desenvolverá um aplicativo de página única apresentando um mapa de seu bairro ou de um bairro que gostaria de visitar. Depois, você vai adicionar recursos a esse mapa, incluindo locais em destaque, dados de terceiros sobre esses locais e diversas formas de navegar pelo conteúdo.
+
+Por que este projeto?
+O aplicativo Mapa do Bairro é tão complexo e tem uma quantidade tão grande de pontos de dados que pode ser difícil gerenciar tudo. Existem diversas estruturas, bibliotecas e APIs para tornar esse processo mais gerenciável, e muitas empresas buscam profissionais com habilidades específicas no uso desses pacotes.
+
+O que vou aprender?
+Você vai entender como padrões de design e bibliotecas/frameworks de UI, ajudam no desenvolvimento de uma base de código gerenciável. Depois, você verá detalhes de como as estruturas podem reduzir o tempo necessário para o desenvolvimento de um aplicativo e oferecer inúmeras outras utilidades. Por fim, você implementará APIs de terceiros, que fornecem conjuntos de dados valiosos para aumentar a qualidade de seu aplicativo.
+
+E como isso ajuda na minha carreira?
+Bibliotecas e frameworks de UI são tecnologias muito utilizadas por desenvolvedores front-end
+Interagir com servidores de API é o principal papel dos desenvolvedores front-end
+O uso de bibliotecas e APIs de terceiros é prática padrão, aceitável e recomendada
+É importante entender programação assíncrona no mercado atual
