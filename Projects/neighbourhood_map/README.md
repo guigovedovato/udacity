@@ -1,9 +1,9 @@
 # Neighbourhood Map App
 
-**Neighbourhood Map App** is an application designed to show a list of interesting point in Porto - Portugal. This project consists of:
+**Neighbourhood Map App** is an application designed to show a list of interesting points in Porto - Portugal. This project consists of:
 * The home page displays all current points.
 * Selecting a specific point shows information about that point.
-* Filtering for some point shows only the specifc point.
+* Filtering for some points shows only the specifc points.
 * To run the program successfully, it is requested:
     * Please, see [Requirements](#requirements) for requirements of this project;
     * How to install in [Instalation](#Instalation) section;
