@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import * as MapsService from './service/MapsService'
-import * as WikiService from './service/WikiService'
 import PropTypes from 'prop-types'
 
 class Map extends Component {
@@ -25,11 +23,30 @@ class Map extends Component {
         const showingPoints = query === ''
           ? points
           : points.filter((c) => (
-              c.name.toLowerCase().includes(query.toLowerCase())
+              c.title.toLowerCase().includes(query.toLowerCase())
             ))
 
           return (
-            <div></div>
+            <div className='list-points'>
+                <div className='list-points-top'>
+                    <input
+                        className='search-points'
+                        type='text'
+                        placeholder='Search Points'
+                        value={query}
+                        onChange={(event) => this.updateQuery(event.target.value)}
+                    />
+                </div>
+                <ol className='point-list'>
+                    {showingPoints.map((point) => (
+                        <li key={point.id} className='point-list-item'>
+                        <div className='point-details'>
+                            <p>{point.title}</p>
+                        </div>
+                        </li>
+                    ))}
+                </ol>
+            </div>
           )
       }
 }

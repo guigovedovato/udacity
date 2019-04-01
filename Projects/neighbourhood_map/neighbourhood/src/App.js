@@ -8,12 +8,9 @@ class App extends Component {
     points: []
   }
   componentDidMount() {
-    MapsService.getAll()
-      .then((points) => {
-        this.setState(() => ({
-          points
-        }))
-      })
+    this.setState(() => ({
+      points: MapsService.getAll()
+    }))
   }
   render() {
     return (
