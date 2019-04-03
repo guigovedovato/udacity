@@ -1,10 +1,10 @@
 var points = [
-  {id: 1, title: 'Park Ave Penthouse', location: {lat: 40.7713024, lng: -73.9632393}},
-  {id: 2, title: 'Chelsea Loft', location: {lat: 40.7444883, lng: -73.9949465}},
-  {id: 3, title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
-  {id: 4, title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
-  {id: 5, title: 'TriBeCa Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
-  {id: 6, title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
+  {id: 1, title: 'Zoo da Maia', location: {lat: 41.2273168, lng: -8.6527287}},
+  {id: 2, title: 'Estádio Prof. Dr. José Vieira de Carvalho', location: {lat: 41.2299208, lng: -8.6198336}},
+  {id: 3, title: 'Parque Urbano Novo Rumo', location: {lat: 41.229937, lng: -8.624447}},
+  {id: 4, title: 'Fórum Da Maia', location: {lat: 41.2307609, lng: -8.6205405}},
+  {id: 5, title: 'Jardim das Pirâmides', location: {lat: 41.2315678, lng: -8.6225361}},
+  {id: 6, title: 'Maia Business Center Bldg Sonae', location: {lat: 41.2333429, lng: -8.6335009}}
 ];
 
 export const getAll = () => points

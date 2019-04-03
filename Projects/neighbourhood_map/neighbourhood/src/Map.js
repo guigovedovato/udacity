@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 class Map extends Component {
     static propTypes = {
-        points: PropTypes.array.isRequired
+        points: PropTypes.array.isRequired,
+        selectPoint: PropTypes.func.isRequired
       }
       state = {
         query: ''
@@ -13,12 +14,9 @@ class Map extends Component {
           query: query.trim()
         }))
       }
-      clearQuery = () => {
-        this.updateQuery('')
-      }
       render() {
         const { query } = this.state
-        const { points } = this.props
+        const { points, selectPoint } = this.props
     
         const showingPoints = query === ''
           ? points
@@ -27,25 +25,28 @@ class Map extends Component {
             ))
 
           return (
-            <div className='list-points'>
-                <div className='list-points-top'>
-                    <input
-                        className='search-points'
-                        type='text'
-                        placeholder='Search Points'
-                        value={query}
-                        onChange={(event) => this.updateQuery(event.target.value)}
-                    />
-                </div>
-                <ol className='point-list'>
-                    {showingPoints.map((point) => (
-                        <li key={point.id} className='point-list-item'>
-                        <div className='point-details'>
-                            <p>{point.title}</p>
-                        </div>
-                        </li>
-                    ))}
-                </ol>
+            <div className="App-content">
+              <div className='list-points'>
+                  <div>
+                      <input
+                          className='search-points'
+                          type='text'
+                          placeholder='Search Points'
+                          value={query}
+                          onChange={(event) => this.updateQuery(event.target.value)}
+                      />
+                  </div>
+                  <ol>
+                      {showingPoints.map((point) => (
+                          <li key={point.id}  className="point">
+                              <p
+                                 onClick={() => selectPoint(point.title)}>
+                                 {point.title}
+                              </p>
+                          </li>
+                      ))}
+                  </ol>
+              </div>
             </div>
           )
       }
