@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class Map extends Component {
     static propTypes = {
-        points: PropTypes.array.isRequired,
-        selectPoint: PropTypes.func.isRequired
+        markers: PropTypes.array.isRequired,
+        selectPoint: PropTypes.func.isRequired,
+        update: PropTypes.func.isRequired
       }
       state = {
         query: ''
@@ -16,13 +17,13 @@ class Map extends Component {
       }
       render() {
         const { query } = this.state
-        const { points, selectPoint } = this.props
+        const { markers, selectPoint, update } = this.props
     
         const showingPoints = query === ''
-          ? points
-          : points.filter((c) => (
+          ? markers
+          : update(markers.filter((c) => (
               c.title.toLowerCase().includes(query.toLowerCase())
-            ))
+            )))
 
           return (
             <div className="App-content">
@@ -37,11 +38,11 @@ class Map extends Component {
                       />
                   </div>
                   <ol>
-                      {showingPoints.map((point) => (
-                          <li key={point.id}  className="point">
+                      {showingPoints.map((marker) => (
+                          <li key={marker.id}  className="point">
                               <p
-                                 onClick={() => selectPoint(point.title)}>
-                                 {point.title}
+                                 onClick={() => selectPoint(marker)}>
+                                 {marker.title}
                               </p>
                           </li>
                       ))}
