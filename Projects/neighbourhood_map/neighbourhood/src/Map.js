@@ -5,7 +5,8 @@ class Map extends Component {
     static propTypes = {
         markers: PropTypes.array.isRequired,
         selectPoint: PropTypes.func.isRequired,
-        update: PropTypes.func.isRequired
+        update: PropTypes.func.isRequired,
+        add: PropTypes.func.isRequired
       }
       state = {
         query: ''
@@ -17,10 +18,10 @@ class Map extends Component {
       }
       render() {
         const { query } = this.state
-        const { markers, selectPoint, update } = this.props
+        const { markers, selectPoint, update, add } = this.props
     
         const showingPoints = query === ''
-          ? markers
+          ? add()
           : update(markers.filter((c) => (
               c.title.toLowerCase().includes(query.toLowerCase())
             )))

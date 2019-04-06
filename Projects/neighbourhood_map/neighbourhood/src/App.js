@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './Map';
 import * as MapsService from './service/MapsService';
-import fetchGoogleMaps from 'fetch-google-maps';
+import * as FoursquareService from './service/FoursquareService'
 
 class App extends Component {
   state = {
@@ -14,20 +14,14 @@ class App extends Component {
   points = {}
   Maps = {}
   componentDidMount() {
+    this.Maps = MapsService.getMaps().then(( Maps ) => {
+      this.map = new Maps.Map(document.getElementById('map'));
+      this.Maps = Maps;
+      this.largeInfowindow = new Maps.InfoWindow();
+      this.bounds = new Maps.LatLngBounds();
+      this.bind(this.Maps);
+  });
     this.points = MapsService.getAll()
-    fetchGoogleMaps({
-      apiKey: 'AIzaSyBwYJGyuQEKS-pq5okWCCjI7djeiQwhvVk',
-      language: 'en'
-    }).then(( Maps ) => {
-        this.map = new Maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: new Maps.LatLng(41.2277042, -8.6329876)
-        });
-        this.Maps = Maps;
-        this.largeInfowindow = new Maps.InfoWindow();
-        this.bounds = new Maps.LatLngBounds();
-        this.bind(this.Maps);
-    });
   }
   bind = (Maps) => {
     for (var i = 0; i < this.points.length; i++) {
@@ -61,9 +55,10 @@ class App extends Component {
     if (infowindow.marker !== marker) {
       infowindow.marker = marker;
       this.selectPoint(marker)
-      // Make sure the marker property is cleared if the infowindow is closed.
+      let self = this;
       infowindow.addListener('closeclick',function(){
         infowindow.setMarker = null;
+        self.resetAnimation();
       });
     }
   }
@@ -74,22 +69,41 @@ class App extends Component {
       this.bounds.extend(marker.position);
   }
   updateMaker = (markers) => {
-    if(this.state.markers.length >= markers.length)
-      this.remove(markers)
-    else
-      alert("deve adicionar")
+    this.remove(markers)
     return markers
   }
-  remove = (ma) => {
+  removeAll = () => {
+    for (var i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(null);
+    }
+  }
+  addAll = () => {
+    for (var i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(this.map);
+    }
+    return this.state.markers
+  }
+  remove = (marker) => {
+    this.removeAll()
     this.state.markers.filter((c) => {
-      return ma.indexOf(c) < 0
+      return marker.indexOf(c) >= 0
     }).map((item) => (
-      item.setMap(null)
+      item.setMap(this.map)
     ))
   }
-  selectPoint = (point) => {
-    this.largeInfowindow.setContent('<div>' + point.title + '</div>');
+  resetAnimation = () => {
+    for (var i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setAnimation(null);
+    }
+  }
+  selectPoint = async (point) => {
+    this.resetAnimation();
+    this.largeInfowindow.setContent('<div>' + point.title + '</div>' + await this.setContent(point));
     this.largeInfowindow.open(this.map, point);
+    point.setAnimation(this.Maps.Animation.BOUNCE);
+  }
+  setContent = async (location) => {
+    return await FoursquareService.getLocation(location);
   }
   render() {
     return (
@@ -97,7 +111,8 @@ class App extends Component {
         <Map 
           markers={this.state.markers}
           selectPoint={this.selectPoint}
-          update={this.updateMaker}/>
+          update={this.updateMaker}
+          add={this.addAll}/>
         <div id="map" className="App-maps"></div>
       </div>
     );

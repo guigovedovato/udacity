@@ -4,6 +4,7 @@
 * The home page displays all current points.
 * Selecting a specific point shows information about that point.
 * Filtering for some points shows only the specifc points.
+* The application is using Google Maps API and Wikipedia API
 * To run the program successfully, it is requested:
     * Please, see [Requirements](#requirements) for requirements of this project;
     * How to install in [Instalation](#Instalation) section;
