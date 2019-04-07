@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.list-points {
+.list-markers {
   background-color: #282c34;
   min-height: 100vh;
   align-items: left;
@@ -25,7 +25,7 @@
   color: #282c34;
 }
 
-.search-points {
+.search-markers {
   width: 95%;
   padding: 2%;
   font-size: calc(8px + 2vmin);
@@ -33,10 +33,10 @@
   outline: none;
 }
 
-.point {
+.marker {
   cursor: pointer;
 }
 
-.point:hover {
+.marker:hover {
   color:brown;
 }

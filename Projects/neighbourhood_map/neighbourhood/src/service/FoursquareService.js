@@ -2,16 +2,17 @@ import {CLIENT_ID, CLIENT_SECRET} from './config'
 
 export const getLocation = async (location) => {
     const basseURL = "https://api.foursquare.com/v2/";
-    
+
+    // Get lat and lng values from Google.Maps.Marker object
     var lat = location.getPosition().lat();
     var lng = location.getPosition().lng();
-    
-    const wikiURL = `${basseURL}venues/search?client_id=
-                     ${CLIENT_ID()}&client_secret=
-                     ${CLIENT_SECRET()}&ll=
-                     ${lat},${lng}&v=20180323&limit=1`;
 
-    return await fetch(wikiURL)
+    const foursquareURL = `${basseURL}venues/search?client_id=
+                        ${CLIENT_ID()}&client_secret=
+                        ${CLIENT_SECRET()}&ll=
+                        ${lat},${lng}&v=20180323&limit=1`;
+
+    return await fetch(foursquareURL)
     .then(response => response.json())
     .then(
         result => {

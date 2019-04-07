@@ -14,28 +14,32 @@ class App extends Component {
   points = {}
   Maps = {}
   componentDidMount() {
+    // Get Google Maps object from API and initialize properties
     this.Maps = MapsService.getMaps().then(( Maps ) => {
       this.map = new Maps.Map(document.getElementById('map'));
       this.Maps = Maps;
       this.largeInfowindow = new Maps.InfoWindow();
       this.bounds = new Maps.LatLngBounds();
       this.bind(this.Maps);
-  });
+    });
+    // Get all parameterized point of interest
     this.points = MapsService.getAll()
   }
+  // Bind the points into Google Maps as Markers
   bind = (Maps) => {
-    for (var i = 0; i < this.points.length; i++) {
+    for (let i = 0; i < this.points.length; i++) {
       this.add(Maps, this.points[i]);
     }
     // Extend the boundaries of the map for each marker
     this.map.fitBounds(this.bounds);
   }
+  // Add markers
   add = (Maps, point) => {
     // Get the position from the location array.
-    var position = point.location;
-    var title = point.title;
+    let position = point.location;
+    let title = point.title;
     // Create a marker per location, and put into markers array.
-    var marker = new Maps.Marker({
+    let marker = new Maps.Marker({
       map: this.map,
       position: position,
       title: title,
@@ -50,59 +54,70 @@ class App extends Component {
       self.populateInfoWindow(this, self.largeInfowindow);
     });
   } 
+  // Create the InfoWindow Object
   populateInfoWindow = (marker, infowindow) => {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
       infowindow.marker = marker;
-      this.selectPoint(marker)
+      // Create InfoWindow content
+      this.showMarkerInfo(marker)
       let self = this;
+      // Create the close buttom
       infowindow.addListener('closeclick',function(){
         infowindow.setMarker = null;
         self.resetAnimation();
       });
     }
   }
+  // Add Markers into the Map
   addMarker = (marker) => {
-      this.setState((currentState) => ({
-        markers: currentState.markers.concat([marker])
-      }))
-      this.bounds.extend(marker.position);
+    this.setState((currentState) => ({
+      markers: currentState.markers.concat([marker])
+    }))
+    this.bounds.extend(marker.position);
   }
+  // Update the markers in the Map
   updateMaker = (markers) => {
     this.remove(markers)
     return markers
   }
+  // Remove all markers to be regenerated again
   removeAll = () => {
-    for (var i = 0; i < this.state.markers.length; i++) {
+    for (let i = 0; i < this.state.markers.length; i++) {
       this.state.markers[i].setMap(null);
     }
   }
+  // Add all markers again in the Map
   addAll = () => {
-    for (var i = 0; i < this.state.markers.length; i++) {
+    for (let i = 0; i < this.state.markers.length; i++) {
       this.state.markers[i].setMap(this.map);
     }
     return this.state.markers
   }
+  // Remove markers from the Map
   remove = (marker) => {
+    // Remove all
     this.removeAll()
     this.state.markers.filter((c) => {
       return marker.indexOf(c) >= 0
     }).map((item) => (
+      // Insert only the desired markers in the Map
       item.setMap(this.map)
     ))
   }
   resetAnimation = () => {
-    for (var i = 0; i < this.state.markers.length; i++) {
+    for (let i = 0; i < this.state.markers.length; i++) {
       this.state.markers[i].setAnimation(null);
     }
   }
-  selectPoint = async (point) => {
+  showMarkerInfo = async (marker) => {
     this.resetAnimation();
-    this.largeInfowindow.setContent('<div>' + point.title + '</div>' + await this.setContent(point));
-    this.largeInfowindow.open(this.map, point);
-    point.setAnimation(this.Maps.Animation.BOUNCE);
+    this.largeInfowindow.setContent('<div>' + marker.title + '</div>' + await this.getContent(marker));
+    this.largeInfowindow.open(this.map, marker);
+    marker.setAnimation(this.Maps.Animation.BOUNCE);
   }
-  setContent = async (location) => {
+  // Get content from Foursquare API
+  getContent = async (location) => {
     return await FoursquareService.getLocation(location);
   }
   render() {
@@ -110,7 +125,7 @@ class App extends Component {
       <div>
         <Map 
           markers={this.state.markers}
-          selectPoint={this.selectPoint}
+          showMarkerInfo={this.showMarkerInfo}
           update={this.updateMaker}
           add={this.addAll}/>
         <div id="map" className="App-maps"></div>
