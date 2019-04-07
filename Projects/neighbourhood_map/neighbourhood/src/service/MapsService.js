@@ -11,7 +11,12 @@ var points = [
 export const getAll = () => points
 export const getMaps = () => {
   return fetchGoogleMaps({
+    // AIzaSyBwYJGyuQEKS-pq5okWCCjI7djeiQwhvVk
     apiKey: 'AIzaSyBwYJGyuQEKS-pq5okWCCjI7djeiQwhvVk',
     language: 'en'
-  })
+  }).catch((e) => console.log(e))
+}
+
+window.gm_authFailure = () => {
+  alert("Unfortunately there was an error to load Google Maps!")
 }

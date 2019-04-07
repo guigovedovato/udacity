@@ -3,6 +3,7 @@ import './App.css';
 import Map from './Map';
 import * as MapsService from './service/MapsService';
 import * as FoursquareService from './service/FoursquareService'
+import ErrorBoundary from './ErrorBoundary'
 
 class App extends Component {
   state = {
@@ -15,12 +16,15 @@ class App extends Component {
   Maps = {}
   componentDidMount() {
     // Get Google Maps object from API and initialize properties
-    this.Maps = MapsService.getMaps().then(( Maps ) => {
+    this.Maps = MapsService.getMaps().then((Maps) => {
       this.map = new Maps.Map(document.getElementById('map'));
       this.Maps = Maps;
       this.largeInfowindow = new Maps.InfoWindow();
       this.bounds = new Maps.LatLngBounds();
       this.bind(this.Maps);
+    }).catch((e) => {
+      console.log(e)
+      alert("Unfortunately there was an error to load Google Maps!");
     });
     // Get all parameterized point of interest
     this.points = MapsService.getAll()
@@ -123,11 +127,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map 
-          markers={this.state.markers}
-          showMarkerInfo={this.showMarkerInfo}
-          update={this.updateMaker}
-          add={this.addAll}/>
+        <ErrorBoundary>
+          <Map 
+            markers={this.state.markers}
+            showMarkerInfo={this.showMarkerInfo}
+            update={this.updateMaker}
+            add={this.addAll}/>
+          </ErrorBoundary>
         <div id="map" className="App-maps"></div>
       </div>
     );
