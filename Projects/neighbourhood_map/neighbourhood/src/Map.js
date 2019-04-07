@@ -28,27 +28,31 @@ class Map extends Component {
         )))
 
     return (
-      <div className="App-content">
-        <div className='list-markers'>
-            <div>
-                <input
-                    className='search-markers'
-                    type='text'
-                    placeholder='Search Points'
-                    value={query}
-                    onChange={(event) => this.updateQuery(event.target.value)}
-                />
-            </div>
-            <ol>
-                {showingmarkers.map((marker) => (
-                    <li key={marker.id}  className="marker">
-                        <p
-                            onClick={() => showMarkerInfo(marker)}>
-                            {marker.title}
-                        </p>
-                    </li>
-                ))}
-            </ol>
+      <div className="content">
+        <input id="collapsible" className="toggle" type="checkbox" />
+        <label htmlFor="collapsible" className="lbl-toggle">Filter Points</label>
+        <div className="App-content">
+          <div className='list-markers'>
+              <div>
+                  <input
+                      className='search-markers'
+                      type='text'
+                      placeholder='e.g. Maia'
+                      value={query}
+                      onChange={(event) => this.updateQuery(event.target.value)}
+                  />
+              </div>
+              <ol>
+                  {showingmarkers.map((marker) => (
+                      <li key={marker.id}  className="marker">
+                          <p
+                              onClick={() => showMarkerInfo(marker)}>
+                              {marker.title}
+                          </p>
+                      </li>
+                  ))}
+              </ol>
+          </div>
         </div>
       </div>
     )
