@@ -102,7 +102,7 @@ input[type='checkbox'] {
 }
 
 .toggle:checked + .lbl-toggle + .App-content {
-  max-height: 350px;
+  max-height: 440px;
 }
 
 .toggle:checked + .lbl-toggle::before {
