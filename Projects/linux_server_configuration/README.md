@@ -27,4 +27,4 @@ Foram feitas as seguintes configurações:
 * virtual host no Apache para rodar a aplicação em WSGI
 
 ## iv. Uma lista de quaisquer recursos de terceiros que você usou para completar esse projeto.
-* AWS lightsail
+* https://github.com/kongling893/Linux-Server-Configuration-UDACITY/blob/master/README.md
