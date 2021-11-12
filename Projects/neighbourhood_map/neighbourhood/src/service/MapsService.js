@@ -11,8 +11,7 @@ var points = [
 export const getAll = () => points
 export const getMaps = () => {
   return fetchGoogleMaps({
-    // AIzaSyBwYJGyuQEKS-pq5okWCCjI7djeiQwhvVk
-    apiKey: 'AIzaSyBwYJGyuQEKS-pq5okWCCjI7djeiQwhvVk',
+    apiKey: '',
     language: 'en'
   }).catch((e) => console.log(e))
 }
