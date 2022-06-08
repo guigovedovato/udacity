@@ -37,7 +37,7 @@ pylint==2.2.2
 pyparsing==2.3.0
 redis==3.0.1
 requests==2.21.0
-rsa==4.0
+rsa==4.7
 six==1.11.0
 SQLAlchemy==1.2.14
 urllib3==1.26.5
